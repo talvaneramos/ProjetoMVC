@@ -1,0 +1,136 @@
+﻿@model Projeto.Presentation.Mvc.Models.AccountRegisterModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/css/bootstrap.min.css" rel="stylesheet" />*@
+
+</head>
+
+<body>
+
+    <div class="container mt-3"> 
+        <h3>Criar conta de Usuário</h3> 
+
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show"
+                 role="alert">
+                <strong>@TempData["MensagemSucesso"]</strong>
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show"
+                 role="alert">
+                <strong>@TempData["MensagemErro"]</strong>
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+        
+        @using (Html.BeginForm())
+        {
+            <label>Nome do usuário:</label>
+            @Html.TextBoxFor(model => model.Nome, 
+                new 
+                {
+                    @class = "form-control col-md-4", 
+                    @placeholder = "Digite aqui"
+                })
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(model => model.Nome)
+                </span>
+            <br />
+
+            <label>Email de acesso:</label>
+            @Html.TextBoxFor(model => model.Email,
+                new
+                {
+                    @class = "form-control col-md-4",
+                    @placeholder = "Digite aqui"
+                })
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.Email)
+            </span>
+            <br />
+
+            <label>Senha de acesso:</label>
+            @Html.PasswordFor(model => model.Senha,
+                new
+                {
+                    @class = "form-control col-md-4",
+                    @placeholder = "Digite aqui"
+                })
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.Senha)
+            </span>
+            <br />
+
+            <label>Confirme sua senha:</label>
+            @Html.PasswordFor(model => model.SenhaConfirmacao,
+                new
+                {
+                    @class = "form-control col-md-4",
+                    @placeholder = "Digite aqui"
+                })
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.SenhaConfirmacao)
+            </span>
+
+            <br />
+
+            <input type="submit" class="btn btn-sm btn-dark" value="Realizar cadastro"/>
+
+            <a href="/Account/Login" class="btn btn-sm btn-secondary">Acessar sistema</a>
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <script src="~/js/jquery-3.7.0.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+
+</body>
+</html>
